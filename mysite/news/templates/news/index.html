@@ -31,21 +31,23 @@
       <div class="row">
         <div class="col-md-12">
           {% for item in news %}
-          <div class="card mb-3">
-            <div class="card-header">
-              Категория: {{ item.category }}
+            <div class="card mb-3">
+              <div class="card-header">
+                Категория: {{ item.category }}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">{{ item.content }}</p>
+                <a href="#" class="btn btn-primary">Подробнее..</a>
+              </div>
+              <div class="card-footer text-muted">
+                <a>Создана: {{ item.created_at|date:"d.m.Y H:i" }}    </a>
+                <a>Обновлена: {{ item.updated_at|date:"d.m.Y H:i" }}</a>
+              </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <p class="card-text">{{ item.content }}</p>
-              <a href="#" class="btn btn-primary">Подробнее..</a>
-            </div>
-            <div class="card-footer text-muted">
-              <a>Создана: {{ item.created_at|date:"d.m.Y H:i" }}    </a>
-              <a>Обновлена: {{ item.updated_at|date:"d.m.Y H:i" }}</a>
-            </div>
-          </div>
-        {% endfor %}
+          {% empty %}
+          <a>Well.. shit. No news</a>
+          {% endfor %}
         </div>
       </div>
     </div>
