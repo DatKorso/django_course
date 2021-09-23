@@ -14,11 +14,14 @@
     {% include 'inc/_nav.html' %}
 
     <div class="container mt-3">
+      {% block news_title %}News title{% endblock %}
       <div class="row">
-
+        <div class="col-md-2">
           {% block sidebar %}Sidebar{% endblock %}
+        </div>
+        <div class="col-md-10">
           {% block content %}Content{% endblock %}
-
+        </div>
       </div>
     </div>
 
