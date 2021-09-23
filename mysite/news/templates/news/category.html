@@ -29,7 +29,7 @@
           <div class="media-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-text">{{ item.content|truncatewords:64|linebreaksbr }}</p>
-            <a href="#" class="btn btn-primary">Подробнее..</a></div>
+            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Подробнее..</a></div>
         </div>
       </div>
       <div class="card-footer text-muted">
