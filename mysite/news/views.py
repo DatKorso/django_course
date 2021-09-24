@@ -28,7 +28,8 @@ def add_news(request):
         form = NewsForm(request.POST)
         if form.is_valid():
             #print(form.cleaned_data)
-            news = News.objects.create(**form.cleaned_data)
+            #news = News.objects.create(**form.cleaned_data) - с моделями делать не нужно
+            news = form.save()
             return redirect(news)
     else:
         form = NewsForm()
