@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block news_title %}
+  <h1>{{ title }}</h1>
+{% endblock %}}
+
+{% block sidebar %}
+    {% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    {% for item in news %}
+    <div class="card mb-3">
+      <div class="card-header">
+        Категория: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+      </div>
+      <div class="card-body">
+        <div class="media">
+          {%  if item.photo %}
+          <img src="{{ item.photo.url }}" alt="" width="450px" >
+          {% else %}
+          <img src="http://denrakaev.com/wp-content/uploads/2015/03/no-image-800x511.png" alt=""
+               width="450px" >
+          {% endif %}
+          <div class="media-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.content|truncatewords:64|linebreaksbr }}</p>
+            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Подробнее..</a></div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <a>Создана: {{ item.created_at|date:"d.m.Y H:i" }}    </a>
+        <a>Обновлена: {{ item.updated_at|date:"d.m.Y H:i" }}</a>
+      </div>
+    </div>
+    {% empty %}
+    <a>Well.. shit. No news</a>
+    {% endfor %}
+{% endblock %}
