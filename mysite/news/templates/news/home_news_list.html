@@ -21,10 +21,10 @@
       <div class="card-body">
         <div class="media">
           {%  if item.photo %}
-          <img src="{{ item.photo.url }}" alt="" width="450px" >
+          <img src="{{ item.photo.url }}" alt="" width="450px" class="mr-3">
           {% else %}
           <img src="http://denrakaev.com/wp-content/uploads/2015/03/no-image-800x511.png" alt=""
-               width="450px" >
+               width="450px" class="mr-3" >
           {% endif %}
           <div class="media-body">
             <h5 class="card-title">{{ item.title }}</h5>
