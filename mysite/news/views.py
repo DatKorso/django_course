@@ -12,6 +12,7 @@ class HomeNews(ListView):
     context_object_name = 'news'
     allow_empty = False
     #extra_context = {'title': 'Главная'}
+    #queryset = News.objects.select_related('category')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -19,7 +20,10 @@ class HomeNews(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(is_published=True)
+        return News.objects.filter(is_published=True).select_related('category')
+        #select related для ForeignKey ↑
+        #prefetch related для ManyToMany ↑
+        #или реализовать сразу в классе через queryset ↑
 
 class NewsByCategory(ListView):
     model = News
@@ -32,7 +36,7 @@ class NewsByCategory(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(category_id = self.kwargs['category_id'], is_published=True)
+        return News.objects.filter(category_id = self.kwargs['category_id'], is_published=True).select_related('category')
 
 # def index(request):
 #     news = News.objects.all()
